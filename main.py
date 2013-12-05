@@ -20,7 +20,7 @@ class NxtGn(TorrentProvider):
 		'login_page' : 'https://nxtgn.org/login.php',
 		'login' : 'https://nxtgn.org/takelogin.php',
 		'detail' : 'https://nxtgn.org/details.php?id=%s',
-		'search' : 'http://nxtgn.org/browse.php?search=%s&cat=%d',
+		'search' : 'http://nxtgn.org/browse.php?search=%s&cat=0&incldead=0&modes=%s',
 		'download' : 'https://nxtgn.org/download.php?id=%s',
 	}
 	
