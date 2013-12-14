@@ -58,71 +58,40 @@ class NxtGn(TorrentProvider):
 				# Collecting entries
 				entries_std = resultsTable.find_all('div' , attrs = {'id' : 'torrent-std'})
 				entries_sticky = resultsTable.find_all('div' , attrs = {'id' : 'torrent-sticky'})
+				entries = entries_std + entries_sticky
 				
-				# Extracting results from sticky entries
-				for result in entries_sticky:
-					
-					torrentId = (((result.find('div', attrs = {'id' :'torrent-download'})).find('a'))['href']).replace('download.php?id=','')
-					torrentName = ((result.find('div', attrs = {'id' :'torrent-udgivelse2-users'})).find('a'))['title']
-					
-					# Name trimming
-					torrentName = torrentName.replace("3D.", "")
-					torrentName = torrentName.replace('EXTENDED.CUT.','')
-					torrentName = torrentName.replace('UNRATED.CUT.','')
-					torrentName = torrentName.replace('THEATRICAL.CUT.','')
-					torrentName = torrentName.replace('EXTENDED.','')
-					torrentName = torrentName.replace('UNRATED.','')
-					torrentName = torrentName.replace('THEATRICAL.','')
-					torrentName = torrentName.replace('Extended.Cut.','')
-					torrentName = torrentName.replace('Unrated.Cut.','')
-					torrentName = torrentName.replace('Theatrical.Cut.','')
-					torrentName = torrentName.replace('Extended.','')
-					torrentName = torrentName.replace('Unrated.','')
-					torrentName = torrentName.replace('Theatrical.','')
-					
+				if len(entries) > 0:
+					# Extracting results from entries
+					for result in entries:
 						
-					results.append({
-						'id': torrentId,
-						'name': torrentName,
-						'url': (self.urls['download'] % torrentId).encode('utf8'),
-						'detail_url': (self.urls['detail'] % torrentId).encode('utf8'),
-						'size': self.parseSize(result.find('div', attrs = {'id' : 'torrent-size'}).text),
-						'seeders': tryInt(result.find('div', attrs = {'id' : 'torrent-seeders'})),
-						'leechers': tryInt(result.find('div', attrs = {'id' : 'torrent-leechers'})),
-				})
-	
-				# Extracting results from standard entries
-				for result in entries_std:
-					
-					torrentId = (((result.find('div', attrs = {'id' :'torrent-download'})).find('a'))['href']).replace('download.php?id=','')
-					torrentName = ((result.find('div', attrs = {'id' :'torrent-udgivelse2-users'})).find('a'))['title']
-
-					# Name trimming
-					torrentName = torrentName.replace("3D.", "")
-					torrentName = torrentName.replace('EXTENDED.CUT.','')
-					torrentName = torrentName.replace('UNRATED.CUT.','')
-					torrentName = torrentName.replace('THEATRICAL.CUT.','')
-					torrentName = torrentName.replace('EXTENDED.','')
-					torrentName = torrentName.replace('UNRATED.','')
-					torrentName = torrentName.replace('THEATRICAL.','')
-					torrentName = torrentName.replace('Extended.Cut.','')
-					torrentName = torrentName.replace('Unrated.Cut.','')
-					torrentName = torrentName.replace('Theatrical.Cut.','')
-					torrentName = torrentName.replace('Extended.','')
-					torrentName = torrentName.replace('Unrated.','')
-					torrentName = torrentName.replace('Theatrical.','')
-	
+						torrentId = (((result.find('div', attrs = {'id' :'torrent-download'})).find('a'))['href']).replace('download.php?id=','')
+						torrentName = ((result.find('div', attrs = {'id' :'torrent-udgivelse2-users'})).find('a'))['title']
 						
-					results.append({
-						'id': torrentId,
-						'name': torrentName,
-						'url': (self.urls['download'] % torrentId).encode('utf8'),
-						'detail_url': (self.urls['detail'] % torrentId).encode('utf8'),
-						'size' :self.parseSize(result.find('div', attrs = {'id' : 'torrent-size'}).text),
-						'seeders': tryInt(result.find('div', attrs = {'id' : 'torrent-seeders'})),
-						'leechers': tryInt(result.find('div', attrs = {'id' : 'torrent-leechers'})),
-				})
-					
+						# Name trimming
+						torrentName = torrentName.replace("3D.", "")
+						torrentName = torrentName.replace('EXTENDED.CUT.','')
+						torrentName = torrentName.replace('UNRATED.CUT.','')
+						torrentName = torrentName.replace('THEATRICAL.CUT.','')
+						torrentName = torrentName.replace('EXTENDED.','')
+						torrentName = torrentName.replace('UNRATED.','')
+						torrentName = torrentName.replace('THEATRICAL.','')
+						torrentName = torrentName.replace('Extended.Cut.','')
+						torrentName = torrentName.replace('Unrated.Cut.','')
+						torrentName = torrentName.replace('Theatrical.Cut.','')
+						torrentName = torrentName.replace('Extended.','')
+						torrentName = torrentName.replace('Unrated.','')
+						torrentName = torrentName.replace('Theatrical.','')
+						
+							
+						results.append({
+							'id': torrentId,
+							'name': torrentName,
+							'url': (self.urls['download'] % torrentId).encode('utf8'),
+							'detail_url': (self.urls['detail'] % torrentId).encode('utf8'),
+							'size': self.parseSize(result.find('div', attrs = {'id' : 'torrent-size'}).text),
+							'seeders': tryInt(result.find('div', attrs = {'id' : 'torrent-seeders'})),
+							'leechers': tryInt(result.find('div', attrs = {'id' : 'torrent-leechers'})),
+					})					
 
 			except:
 				log.error('Failed to parsing %s: %s', (self.getName(),traceback.format_exc()))
