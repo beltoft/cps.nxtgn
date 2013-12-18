@@ -75,12 +75,14 @@ class NxtGn(TorrentProvider):
 						torrentName = torrentName.replace('EXTENDED.','')
 						torrentName = torrentName.replace('UNRATED.','')
 						torrentName = torrentName.replace('THEATRICAL.','')
+						torrentName = torrentName.replace('DIRECTORS.CUT.','')
 						torrentName = torrentName.replace('Extended.Cut.','')
 						torrentName = torrentName.replace('Unrated.Cut.','')
 						torrentName = torrentName.replace('Theatrical.Cut.','')
 						torrentName = torrentName.replace('Extended.','')
 						torrentName = torrentName.replace('Unrated.','')
 						torrentName = torrentName.replace('Theatrical.','')
+						torrentName = torrentName.replace('Directors.Cut.','')
 						
 							
 						results.append({
