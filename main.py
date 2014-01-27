@@ -43,7 +43,7 @@ class NxtGn(TorrentProvider):
 			categories+='&c' + str(x) + '=1'
 
 		searchurl = self.urls['search'] % (tryUrlencode('%s %s' % (title.replace(':', ''), movie['library']['year'])), categories)
-		data = self.getHTMLData(searchurl, opener = self.login_opener)
+		data = self.getHTMLData(searchurl)
 		
 		
 		if data:
@@ -69,6 +69,7 @@ class NxtGn(TorrentProvider):
 						
 						# Name trimming
 						torrentName = torrentName.replace("3D.", "")
+						torrentName = torrentName.replace("DTS7.1.", "")
 						torrentName = torrentName.replace('EXTENDED.CUT.','')
 						torrentName = torrentName.replace('UNRATED.CUT.','')
 						torrentName = torrentName.replace('THEATRICAL.CUT.','')
@@ -118,36 +119,31 @@ class NxtGn(TorrentProvider):
 
 		# Check if we are still logged in every hour
 		now = time.time()
-		if self.login_opener and self.last_login_check < (now - 3600):
+		if self.last_login_check and self.last_login_check < (now - 3600):
 			try:
-				output = self.urlopen(self.urls['test'], opener = self.login_opener)
+				output = self.urlopen(self.urls['test'])
 				if self.loginCheckSuccess(output):
 					self.last_login_check = now
 					return True
-				else:
-					self.login_opener = None
-			except:
-				self.login_opener = None
+			except: pass
+			self.last_login_check = None
 
-		if self.login_opener:
+		if self.last_login_check:
 			return True
 
 		try:
 			# Find csrf for login
-			cookiejar = cookielib.CookieJar()
-			opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookiejar))
-			data_login = self.getHTMLData(self.urls['login_page'], opener = opener)
+			data_login = self.getHTMLData(self.urls['login_page'])
 			bs = BeautifulSoup(data_login)
 			csrfraw = bs.find('form', attrs = {'id': 'login'})['action']
 			
 			# Create 'login' in self.urls
 			self.urls['login'] = (self.urls['test'] + csrfraw).encode('utf8')
-			output = self.urlopen(self.urls['login'], params = self.getLoginParams(), opener = opener)
+			output = self.urlopen(self.urls['login'] + '&' + self.getLoginParams())
 			
 
 			if self.loginSuccess(output):
 				self.last_login_check = now
-				self.login_opener = opener
 				return True
 
 			error = 'unknown'
