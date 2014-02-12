@@ -43,7 +43,7 @@ class NxtGn(TorrentProvider):
 			categories+='&c' + str(x) + '=1'
 
 		searchurl = self.urls['search'] % (tryUrlencode('%s %s' % (title.replace(':', ''), movie['library']['year'])), categories)
-		data = self.getHTMLData(searchurl)
+		data = self.getHTMLData(searchurl.decode('iso-8859-1'))
 		
 		
 		if data:
@@ -134,7 +134,7 @@ class NxtGn(TorrentProvider):
 		try:
 			# Find csrf for login
 			data_login = self.getHTMLData(self.urls['login_page'])
-			bs = BeautifulSoup(data_login)
+			bs = BeautifulSoup(data_login.decode('iso-8859-1'))
 			csrfraw = bs.find('form', attrs = {'id': 'login'})['action']
 			
 			# Create 'login' in self.urls
