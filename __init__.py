@@ -1,7 +1,7 @@
-from .main import NxtGn
+from .main import nxtgn
 
-def start():
-	return NxtGn()
+def autoload():
+	return nxtgn()
 
 config = [{
 	'name': 'nxtgn',
