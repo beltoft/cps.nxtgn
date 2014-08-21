@@ -32,7 +32,7 @@ class nxtgn(TorrentProvider, MovieProvider):
    ]
 
 
-   http_time_between_calls = 1 #seconds
+   https_time_between_calls = 1 #seconds
 
    cat_backup_id = None
 
