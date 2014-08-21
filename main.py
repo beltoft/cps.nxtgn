@@ -17,12 +17,12 @@ log = CPLog(__name__)
 class nxtgn(TorrentProvider, MovieProvider):
 
    urls = {
-      'test' : 'http://nxtgn.org/',
-      'login_page' : 'http://nxtgn.org/login.php',
-      'login' : 'http://nxtgn.org/takelogin.php',
-      'detail' : 'http://nxtgn.org/details.php?id=%s',
-      'search' : 'http://nxtgn.org/browse.php?search=%s&cat=0&incldead=0&modes=%s',
-      'download' : 'http://nxtgn.org/download.php?id=%s',
+      'test' : 'https://nxtgn.org/',
+      'login_page' : 'https://nxtgn.org/login.php',
+      'login' : 'https://nxtgn.org/takelogin.php',
+      'detail' : 'https://nxtgn.org/details.php?id=%s',
+      'search' : 'https://nxtgn.org/browse.php?search=%s&cat=0&incldead=0&modes=%s',
+      'download' : 'https://nxtgn.org/download.php?id=%s',
    }
    
    cat_ids = [
@@ -60,7 +60,7 @@ class nxtgn(TorrentProvider, MovieProvider):
             entries_sticky = resultsTable.find_all('div' , attrs = {'id' : 'torrent-sticky'})
             entries = entries_std + entries_sticky
             
-            if not len(entries) > 0:
+            if len(entries) > 0:
                # Extracting results from entries
                for result in entries:
                   
