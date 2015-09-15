@@ -14,15 +14,15 @@ import time
 log = CPLog(__name__)
 
 
-class nxtgn(TorrentProvider, MovieProvider):
+class nxgn(TorrentProvider, MovieProvider):
 
    urls = {
-      'test' : 'https://nxtgn.org/',
-      'login_page' : 'https://nxtgn.org/login.php',
-      'login' : 'https://nxtgn.org/takelogin.php',
-      'detail' : 'https://nxtgn.org/details.php?id=%s',
-      'search' : 'https://nxtgn.org/browse.php?search=%s&cat=0&incldead=0&modes=%s',
-      'download' : 'https://nxtgn.org/download.php?id=%s',
+      'test' : 'https://nxgn.org/',
+      'login_page' : 'https://nxgn.org/login.php',
+      'login' : 'https://nxgn.org/takelogin.php',
+      'detail' : 'https://nxgn.org/details.php?id=%s',
+      'search' : 'https://nxgn.org/browse.php?search=%s&cat=0&incldead=0&modes=%s',
+      'download' : 'https://nxgn.org/download.php?id=%s',
    }
    
    cat_ids = [
