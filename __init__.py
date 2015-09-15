@@ -1,16 +1,16 @@
-from .main import nxtgn
+from .main import nxgn
 
 def autoload():
-	return nxtgn()
+	return nxgn()
 
 config = [{
-	'name': 'nxtgn',
+	'name': 'nxgn',
 	'groups': [
 		{
 			'tab': 'searcher',
 			'list': 'torrent_providers',
-			'name': 'NxtGn',
-			'description': 'See <a href="http://nxtgn.org">NxtGn</a>',
+			'name': 'NxGn',
+			'description': 'See <a href="http://nxgn.org">NxGn</a>',
 			'wizard': True,
 			'options': [
 				{
