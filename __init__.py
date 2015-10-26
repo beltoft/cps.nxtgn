@@ -10,7 +10,7 @@ config = [{
 			'tab': 'searcher',
 			'list': 'torrent_providers',
 			'name': 'NxtGn',
-			'description': 'See <a href="http://nxtgn.biz">NxGn</a>',
+			'description': 'See <a href="http://nxtgn.biz">NxtGn</a>',
 			'wizard': True,
 			'options': [
 				{
