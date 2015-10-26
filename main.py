@@ -17,12 +17,12 @@ log = CPLog(__name__)
 class nxtgn(TorrentProvider, MovieProvider):
 
    urls = {
-      'test' : 'https://nxtgn.info/',
-      'login_page' : 'https://nxtgn.info/login.php',
-      'login' : 'https://nxtgn.info/takelogin.php',
-      'detail' : 'https://nxtgn.info/details.php?id=%s',
-      'search' : 'https://nxtgn.info/browse.php?search=%s&cat=0&incldead=0&modes=%s',
-      'download' : 'https://nxtgn.info/download.php?id=%s',
+      'test' : 'https://nxtgn.biz/',
+      'login_page' : 'https://nxtgn.biz/login.php',
+      'login' : 'https://nxtgn.biz/takelogin.php',
+      'detail' : 'https://nxtgn.biz/details.php?id=%s',
+      'search' : 'https://nxtgn.biz/browse.php?search=%s&cat=0&incldead=0&modes=%s',
+      'download' : 'https://nxtgn.biz/download.php?id=%s',
    }
    
    cat_ids = [
